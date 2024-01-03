@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -40,10 +41,88 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-
-      ],
+    var screenwidth = MediaQuery.of(context).size.width;
+    var screenheight = MediaQuery.of(context).size.height;
+    return Scaffold(appBar: AppBar(title: Text("PAGE DESIGN"),backgroundColor: Colors.deepPurpleAccent),
+      body: screenwidth>467 ? tabletHomePage(screenwidth,screenheight):phoneHomePage(screenwidth,screenheight),
     );
   }
+  Widget tabletHomePage(double screenwidth,double screenheight,){
+    return Container(height:screenheight ,width: screenwidth,color: Colors.amberAccent,child:
+      GridView.count(
+      crossAxisCount: 2, // Number of columns in each row
+      children:[
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Center(
+          child: FilledButton(onPressed: () {
+          return setState(() {
+
+          });
+          }, child: Text("SUBMIT")),
+        ),
+      ],
+    ),
+    );
+  }
+  Widget phoneHomePage(double screenwidth,double screenheight,){
+    return Container(height:screenheight ,width: screenwidth,color: Colors.grey,padding: EdgeInsets.all(22),child: Column(
+      children: [
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Padding(padding: EdgeInsets.all(15)),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Padding(padding: EdgeInsets.all(15)),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Padding(padding: EdgeInsets.all(15)),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Padding(padding: EdgeInsets.all(15)),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Padding(padding: EdgeInsets.all(15)),
+        TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+        Padding(padding: EdgeInsets.all(15)),
+        FilledButton(onPressed: () {
+          return setState(() {
+
+          });
+        }, child: Text("SUBMIT")),
+
+      ],
+    ),);
+  }
 }
+
+
+// class MyGridView extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.count(
+//       crossAxisCount: 2, // Number of columns in each row
+//       children: <Widget>[
+//         TextField(
+//           decoration: InputDecoration(labelText: 'Text Field 1'),
+//         ),
+//         TextField(
+//           decoration: InputDecoration(labelText: 'Text Field 2'),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+
+// GridView.builder(gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+//     maxCrossAxisExtent: double.infinity), itemBuilder: (context, index) {
+//       return
+//       Column(children: [
+//       TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+//       TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+//       TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+//       TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+//       TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+//       TextField(decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(33))),),
+//       ],);
+//     },)
